@@ -42,7 +42,7 @@ const EditProfile = () => {
     }
    try {
      setLoading(true)
-     const res= await axios.post('http://localhost:8512/api/v1/user/profile/edit',formData,{
+     const res= await axios.post('https://melegram.onrender.com/api/v1/user/profile/edit',formData,{
       headers:{
         'Content-Type':'multipart/form-data'
       },

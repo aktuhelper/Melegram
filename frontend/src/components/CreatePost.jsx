@@ -36,7 +36,7 @@ const CreatePost = ({ open, setOpen }) => {
     try {
       setLoading(true)
       // Add logic here
-      const res = await axios.post('http://localhost:8512/api/v1/post/addPost', formData, {
+      const res = await axios.post('https://melegram.onrender.com/api/v1/post/addPost', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },

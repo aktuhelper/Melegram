@@ -27,7 +27,7 @@ const ChatPage = () => {
 
     try {
       const res = await axios.post(
-        `http://localhost:8512/api/v1/message/send/${receiverId}`,
+        `https://melegram.onrender.com/api/v1/message/send/${receiverId}`,
         { textMessage },
         {
           headers: {

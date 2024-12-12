@@ -25,7 +25,7 @@ const Login = () => {
         e.preventDefault();
         try {
             setLoading(true);
-            const res = await axios.post('http://localhost:8512/api/v1/user/login', input, {
+            const res = await axios.post('https://melegram.onrender.com/api/v1/user/login', input, {
                 headers: {
                     'Content-Type': 'application/json'
                 },
