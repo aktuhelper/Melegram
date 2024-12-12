@@ -1,0 +1,13 @@
+/* Add custom CSS for better mobile handling */
+@media (max-width: 640px) {
+    .profile-avatar {
+      height: 80px;
+      width: 80px;
+    }
+  
+    .post-image {
+      height: 250px;
+      width: 100%;
+    }
+  }
+  

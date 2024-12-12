@@ -1,0 +1,116 @@
+.custom-scrollbar {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: #3BADF8 #0F0F0F; /* Firefox */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 8px; /* Width of the scrollbar */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: #0F0F0F; /* Background of the scrollbar track */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: #3BADF8; /* Scrollbar color */
+    border-radius: 4px; /* Round edges */
+    border: 2px solid #0F0F0F; /* Creates spacing around thumb */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background-color: #FF6F61; /* Color on hover */
+  }
+  /* Default Styles for Desktop (PC) */
+.comment-dialog {
+  max-width: 70%; 
+  padding: 20px;
+  font-size: 16px;
+  border-radius: 12px
+}
+
+.comment-dialog img,
+.comment-dialog .icon {
+  max-width: 100%;
+  height: 100%; /* Maintain aspect ratio for images */
+}
+
+/* Media Query for Tablets (width <= 1024px) */
+@media (max-width: 1024px) {
+  /* Adjust the dialog width for tablets */
+  .comment-dialog {
+    width: 80%;
+    max-width: 500px;
+    padding: 15px;
+  }
+
+  .comment-dialog img {
+    width: 100%; /* Make images fully responsive */
+    height: auto;
+  }
+
+  /* Avatar size adjustments for tablet */
+  .comment-dialog .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .comment-dialog .avatar img {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Input and button layout adjustments for tablet */
+  .comment-dialog input,
+  .comment-dialog button {
+    font-size: 14px;
+  }
+}
+
+/* Media Query for Mobile Devices (width <= 768px) */
+@media (max-width: 768px) {
+  /* Adjust dialog layout for mobile */
+  .comment-dialog {
+    width: 90%; 
+    max-width: 400px;
+    padding: 10px;
+    font-size: 14px; /* Smaller text size for mobile */
+  }
+
+  .comment-dialog img {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Avatar size adjustments for mobile */
+  .comment-dialog .avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .comment-dialog .avatar img {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* Make input and button full-width on mobile */
+  .comment-dialog .input-wrapper,
+  .comment-dialog .button-wrapper {
+    width: 100%;
+  }
+
+  /* Adjust comment section for mobile */
+  .comment-dialog .comments-section {
+    max-height: 60vh; /* Allow flexible scrolling on mobile */
+    padding: 10px;
+  }
+
+  /* Adjust spacing and padding for the input area */
+  .comment-dialog input {
+    padding: 8px;
+  }
+
+  .comment-dialog button {
+    padding: 10px;
+  }
+}
+  

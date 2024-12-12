@@ -1,0 +1,39 @@
+.like-animation {
+    animation: pop 0.5s ease-in-out;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+/* Default styles for larger screens (PC View) */
+.post-container {
+    max-width: 500px; /* Set max width for posts */
+    margin: 0 auto;   /* Center post on large screens */
+}
+
+/* Mobile and Tablet Screens */
+@media screen and (max-width: 768px) {
+    .post-container {
+        width: 100% !important;  /* Full width on mobile/tablet */
+        padding: 16px;           /* Add padding for better readability */
+        margin-left: 16px;       /* Add margin on left and right */
+        margin-right: 16px;
+    }
+}
+
+/* Mobile Screens */
+@media screen and (max-width: 480px) {
+    .post-container {
+        width: 100%;
+        margin-left: 8px;
+        margin-right: 8px;
+    }
+}
