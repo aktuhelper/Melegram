@@ -53,35 +53,30 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     if (user) {
-      const socketUrl = 'https://melegram.onrender.com' || 'http://localhost:8512'; // Default to localhost for development
-      const socketio = io(socketUrl, {
+      const socketio = io('http://localhost:8512', {
         query: {
           userId: user?._id
         },
-        transports: ['websocket'] // Prevent calling unnecessary APIs
-      });
-  
+        transports: ['websocket'] //prevent calling unncessary apis
+      })
       dispatch(setSocket(socketio));
-  
-      // Listening to events
+      //listening all the events
       socketio.on('getOnlineUsers', (onlineUsers) => {
         dispatch(setOnlineUsers(onlineUsers));
       });
-  
-      socketio.on('notification', (notification) => {
+      socketio.on('notification',(notification)=>{
         dispatch(setLikeNotification(notification));
-      });
-  
+      })
       return () => {
         socketio.close();
         dispatch(setSocket(null));
-      };
-    } else if (socket) {
+      }
+    } else if(socket) {
       socket.close();
       dispatch(setSocket(null));
     }
-  }, [user, dispatch, socket]);
-  
+
+  }, [user, dispatch])
   return (
     <div className="custom-scrollbar">
       <>
