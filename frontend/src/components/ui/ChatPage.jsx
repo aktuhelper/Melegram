@@ -16,8 +16,8 @@ const ChatPage = () => {
   const bottomRef = useRef(null); // Ref for scrolling to the bottom
   const dispatch = useDispatch();
 
-  const { user = {}, suggestedUsers = [], selectedUser = null } = useSelector(store => store.auth);
-  const { onlineUsers = [], messages = [] } = useSelector(store => store.chat);
+  const { user = {}, suggestedUsers = [], selectedUser = null } = useSelector((store) => store.auth);
+  const { onlineUsers = [], messages = [] } = useSelector((store) => store.chat);
 
   const sendMessageHandler = async (receiverId) => {
     if (!receiverId || !textMessage.trim()) {
@@ -38,7 +38,7 @@ const ChatPage = () => {
       );
 
       if (res.data.success) {
-        dispatch(setMessages([...messages, res.data.newMessage]));
+        dispatch(setMessages((prevMessages) => [...prevMessages, res.data.newMessage]));
         setTextMessage('');
       } else {
         console.warn('Message not sent, server response:', res.data);

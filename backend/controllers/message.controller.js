@@ -1,7 +1,7 @@
 import { Conversation } from "../models/conversation.model.js";
 import { Message } from "../models/message.model.js";
 import { User } from "../models/user_model.js";
-import { getReceiverSocketId } from "../socket/socket.js"; // Assuming this function exists and works correctly
+import { getReceiverSocketId } from "../socket/socket.js"; // Get socket ID of the receiver
 import { io } from "../socket/socket.js"; // Importing socket instance
 
 // API for sending messages
@@ -74,34 +74,6 @@ export const sendMessage = async (req, res) => {
         return res.status(500).json({
             success: false,
             message: 'Failed to send message',
-            error: error.message
-        });
-    }
-};
-
-// API for getting messages
-export const getMessage = async (req, res) => {
-    try {
-        const senderId = req.id; // The sender's ID from the request
-        const receiverId = req.params.id; // The receiver's ID from the request params
-
-        // Find conversation between the sender and receiver and populate the messages
-        const conversation = await Conversation.findOne({
-            participants: { $all: [senderId, receiverId] }
-        }).populate('messages');
-
-        if (!conversation) {
-            return res.status(200).json({ success: true, messages: [] });
-        }
-
-        // Return the conversation's messages
-        return res.status(200).json({ success: true, messages: conversation.messages });
-
-    } catch (error) {
-        console.log('Error getting messages:', error);
-        return res.status(500).json({
-            success: false,
-            message: 'Failed to fetch messages',
             error: error.message
         });
     }

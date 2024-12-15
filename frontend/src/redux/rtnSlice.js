@@ -9,7 +9,7 @@ const rtnSlice = createSlice({
     // Add or remove like notifications
     setLikeNotification: (state, action) => {
       if (action.payload.type === 'like') {
-        state.likeNotification.push(action.payload);
+        state.likeNotification = [...state.likeNotification, action.payload];
       } else if (action.payload.type === 'dislike') {
         state.likeNotification = state.likeNotification.filter(
           (item) => item.userId !== action.payload.userId
@@ -21,18 +21,17 @@ const rtnSlice = createSlice({
     markNotificationAsSeen: (state, action) => {
       const notificationId = action.payload; // Notification ID (e.g., 'userId-postId' or 'senderId-conversationId')
 
-      // Check and mark like notifications as seen
-      const likeNotification = state.likeNotification.find(
-        (item) => item.id === notificationId
+      // Check and mark like notifications as seen without mutating the state
+      state.likeNotification = state.likeNotification.map((item) =>
+        item.id === notificationId
+          ? { ...item, seen: true }  // Return a new object with `seen` updated
+          : item
       );
-      if (likeNotification) {
-        likeNotification.seen = true;
-      }
     },
 
     // Clear all seen notifications
     clearSeenNotifications: (state) => {
-      // Filter out all seen notifications from like notifications
+      // Remove all seen notifications by filtering them out
       state.likeNotification = state.likeNotification.filter((item) => !item.seen);
     },
 
