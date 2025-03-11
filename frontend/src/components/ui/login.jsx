@@ -61,7 +61,7 @@ const Login = () => {
                 {/* Header */}
                 <div className="my-4">
                     <h1 className="text-center font-bold text-2xl text-white">
-                        Welcome Back to <span className="my-8 pl-1 font-bold text-2xl text-[#FF6F61] tracking-wide" style={{ fontFamily: 'Pacifico, cursive' }}>Melegram</span>
+                        Welcome Back to <span className="my-8 pl-1 font-bold text-2xl text-[#FF6F61] tracking-wide" style={{ fontFamily: 'Pacifico, cursive' }}>Chattsphere</span>
                     </h1>
                     <p className="text-center text-gray-400 text-sm mt-2">
                         Login to your account to stay connected!
@@ -109,7 +109,7 @@ const Login = () => {
 
                 {/* Signup Redirect */}
                 <span className="text-center text-gray-400">
-                    New to Melegram?{' '}
+                    New to Chattsphere?{' '}
                     <Link to="/signup" className="text-blue-400 hover:underline">
                         Signup
                     </Link>
