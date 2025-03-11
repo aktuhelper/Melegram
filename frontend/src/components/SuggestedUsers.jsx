@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
 
 const SuggestedUsers = () => {
   const { suggestedUsers } = useSelector((store) => store.auth);
@@ -37,10 +36,8 @@ const SuggestedUsers = () => {
               </div>
             </div>
 
-            {/* Follow Button */}
-            <Button variant="outline" className="text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white">
-              Follow
-            </Button>
+            {/* Follow Text in Blue */}
+            <p className="text-blue-500 text-sm font-medium cursor-pointer hover:underline">Join</p>
           </div>
         ))}
       </div>
