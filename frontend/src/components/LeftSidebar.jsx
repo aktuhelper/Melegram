@@ -86,7 +86,7 @@ const LeftSidebar = () => {
             className="my-8 pl-3 font-bold text-3xl text-[#FF6F61] tracking-wide"
             style={{ fontFamily: 'Pacifico, cursive' }}
           >
-            Melegram
+            Chattsphere
           </h1>
         </div>
         {sidebarItems.map((item, index) => (
