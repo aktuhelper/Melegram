@@ -32,12 +32,12 @@ const SuggestedUsers = () => {
                 <Link to={`/profile/${user?._id}`} className="text-white font-medium text-sm hover:underline">
                   {user?.username}
                 </Link>
-                <p className="text-gray-400 text-xs">Suggested for you</p>
+                
               </div>
             </div>
 
             {/* Follow Text in Blue */}
-            <p className="text-blue-500 text-sm font-medium cursor-pointer hover:underline">Join</p>
+
           </div>
         ))}
       </div>
