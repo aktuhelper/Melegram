@@ -61,7 +61,7 @@ const Signup = () => {
                 {/* Header */}
                 <div className="my-4">
                     <h1 className="text-center font-bold text-2xl text-white">
-                        Welcome to <span className="my-8 pl-2 font-bold text-2xl text-[#FF6F61] tracking-wide" style={{ fontFamily: 'Pacifico, cursive' }}>Melegram</span>
+                        Welcome to <span className="my-8 pl-2 font-bold text-2xl text-[#FF6F61] tracking-wide" style={{ fontFamily: 'Pacifico, cursive' }}>Chatsphere</span>
                     </h1>
                     <p className="text-center text-gray-400 text-sm mt-2">
                         Crafted Beutifully by Aditya Singh
