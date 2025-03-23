@@ -43,8 +43,9 @@ const sidebarHandler = (textType) => {
   } else if (textType === "Home") {
     navigate("/");
   } else if (textType === "Messages") {
-    window.location.href = "http://localhost:5173/login"; // ✅ Opens external link
-  }
+    window.location.href = "https://chatsphere-hzox.onrender.com/login";
+}
+
 };
 
   const handleNotificationClick = () => {
