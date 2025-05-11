@@ -43,7 +43,7 @@ const sidebarHandler = (textType) => {
   } else if (textType === "Home") {
     navigate("/");
   } else if (textType === "Messages") {
-    window.location.href = "https://chatsphere-hzox.onrender.com/login";
+    window.location.href = "https://chattsphere.vercel.app/chat";
 }
 
 };
