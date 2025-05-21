@@ -81,20 +81,24 @@ const sidebarHandler = (textType) => {
   return (
    <div>
   {/* Sidebar for larger screens */}
-  <div className="hidden md:block fixed top-0 left-0 z-10 w-[16%] h-screen bg-white/10 backdrop-blur-md border-r border-white/20 flex flex-col justify-between">
-    <div className="flex flex-col items-center">
-      <h1
-        className="my-8 font-bold text-3xl text-[#FF6F61] tracking-wide"
-        style={{ fontFamily: 'Pacifico, cursive' }}
-      >
-        C
-      </h1>
-    </div>
+<div className="hidden md:flex fixed top-0 left-0 z-10 w-16 h-screen bg-white/10 backdrop-blur-md border-r border-white/20 flex-col justify-between items-center py-6">
+  {/* Logo */}
+  <div className="flex flex-col items-center">
+    <h1
+      className="mb-8 font-bold text-2xl text-[#FF6F61] tracking-wide"
+      style={{ fontFamily: 'Pacifico, cursive' }}
+    >
+      C
+    </h1>
+  </div>
+
+  {/* Sidebar Icons */}
+  <div className="flex flex-col gap-6 items-center">
     {sidebarItems.map((item, index) => (
       <div
         onClick={() => sidebarHandler(item.text)}
         key={index}
-        className="flex items-center justify-center relative hover:bg-white/20 transition-colors duration-200 cursor-pointer rounded-lg p-3 my-3 mx-auto w-12 h-12"
+        className="relative flex items-center justify-center hover:bg-white/20 transition-colors duration-200 cursor-pointer rounded-lg w-12 h-12"
       >
         {item.icon}
         {item.text === 'Notifications' && likeNotification.length > 0 && (
@@ -102,12 +106,12 @@ const sidebarHandler = (textType) => {
             <PopoverTrigger asChild>
               <Button
                 size="icon"
-                className="rounded-full h-5 w-5 bg-red-500 hover:bg-red-500 absolute -top-1 -right-1 text-xs text-white"
+                className="absolute -top-1 -right-1 h-5 w-5 bg-red-500 hover:bg-red-500 text-xs text-white rounded-full z-20"
               >
                 {likeNotification.length}
               </Button>
             </PopoverTrigger>
-            <PopoverContent className="popover-content p-2 rounded-md shadow-md bg-white/10 backdrop-blur-md text-white border border-white/10 w-full max-w-[300px] md:max-w-[400px]">
+            <PopoverContent className="popover-content p-2 rounded-md shadow-md bg-white/10 backdrop-blur-md text-white border border-white/10 w-72">
               <div>
                 {likeNotification.length === 0 ? (
                   <p>No new notifications</p>
