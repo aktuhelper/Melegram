@@ -82,7 +82,8 @@ const LeftSidebar = () => {
   return (
     <div>
       {/* Sidebar for larger screens */}
-      <div className="hidden md:flex fixed top-0 left-0 z-10 w-16 h-screen bg-white/10 backdrop-blur-md border-r border-white/20 flex-col justify-between items-center py-6">
+  <div className="hidden md:flex fixed top-4 left-0 z-10 w-16 h-[90vh] bg-white/10 backdrop-blur-md border border-white/20 rounded-t-2xl rounded-b-2xl flex-col justify-between items-center py-6 shadow-lg">
+
         {/* Logo */}
         <div className="flex flex-col items-center">
           <h1
