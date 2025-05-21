@@ -79,88 +79,87 @@ const sidebarHandler = (textType) => {
   ];
 
   return (
-    <div>
-      {/* Sidebar for larger screens */}
-      <div className="hidden md:block fixed top-0 left-0 z-10 w-[16%] h-screen bg-[#0F0F0F] text-white border-r border-gray-700 flex flex-col justify-between">
-        <div className="flex flex-col">
-          <h1
-            className="my-8 pl-3 font-bold text-3xl text-[#FF6F61] tracking-wide"
-            style={{ fontFamily: 'Pacifico, cursive' }}
-          >
-            Chattsphere
-          </h1>
-        </div>
-        {sidebarItems.map((item, index) => (
-          <div
-            onClick={() => sidebarHandler(item.text)}
-            key={index}
-            className="flex items-center gap-3 relative hover:bg-gray-800 cursor-pointer rounded-lg p-3 my-3"
-          >
-            {item.icon}
-            <span>{item.text}</span>
-            {item.text === 'Notifications' && likeNotification.length > 0 && (
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    size="icon"
-                    className="rounded-full h-5 w-5 bg-red-500 hover:bg-red-500 absolute bottom-6 left-6 text-xs text-white"
-                  >
-                    {likeNotification.length}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="popover-content p-2 rounded-md shadow-md bg-[#1A1A1A] text-white border-0 outline-none w-full max-w-[300px] md:max-w-[400px]">
-                  <div>
-                    {likeNotification.length === 0 ? (
-                      <p>No new notifications</p>
-                    ) : (
-                      likeNotification.map((notification) => (
-                        <div
-                          key={notification.userId}
-                          className="flex items-center gap-2 p-2 border-b border-gray-700"
-                        >
-                          <Avatar className="w-8 h-8">
-                            <AvatarImage
-                              className="rounded-full"
-                              src={notification.userDetails?.profilePicture || '/default-avatar.png'}
-                            />
-                            <AvatarFallback>CN</AvatarFallback>
-                          </Avatar>
-                          <p className="text-sm">
-                            <span className="font-bold">{notification.userDetails?.username}</span> liked your post
-                          </p>
-                        </div>
-                      ))
-                    )}
-                  </div>
-                  <Button
-                    onClick={handleNotificationClick}
-                    className="mt-2 w-full bg-gray-800 hover:bg-gray-700 text-white"
-                  >
-                    Mark as Seen
-                  </Button>
-                </PopoverContent>
-              </Popover>
-            )}
-          </div>
-        ))}
-      </div>
-
-      {/* Bottom navigation for smaller screens */}
-      <div className="fixed bottom-0 left-0 z-10 w-full bg-[#0F0F0F] text-white md:hidden flex justify-around items-center py-3 border-t border-gray-700">
-        {sidebarItems.slice(0, 6).map((item, index) => (
-          <div
-            key={index}
-            onClick={() => sidebarHandler(item.text)}
-            className="flex flex-col items-center justify-center cursor-pointer hover:bg-gray-600 p-2 rounded-lg"
-          >
-            {item.icon}
-            <span className="text-xs">{item.text}</span>
-          </div>
-        ))}
-      </div>
-
-      <CreatePost open={open} setOpen={setOpen} />
+   <div>
+  {/* Sidebar for larger screens */}
+  <div className="hidden md:block fixed top-0 left-0 z-10 w-[16%] h-screen bg-white/10 backdrop-blur-md border-r border-white/20 flex flex-col justify-between">
+    <div className="flex flex-col items-center">
+      <h1
+        className="my-8 font-bold text-3xl text-[#FF6F61] tracking-wide"
+        style={{ fontFamily: 'Pacifico, cursive' }}
+      >
+        C
+      </h1>
     </div>
+    {sidebarItems.map((item, index) => (
+      <div
+        onClick={() => sidebarHandler(item.text)}
+        key={index}
+        className="flex items-center justify-center relative hover:bg-white/20 transition-colors duration-200 cursor-pointer rounded-lg p-3 my-3 mx-auto w-12 h-12"
+      >
+        {item.icon}
+        {item.text === 'Notifications' && likeNotification.length > 0 && (
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                size="icon"
+                className="rounded-full h-5 w-5 bg-red-500 hover:bg-red-500 absolute -top-1 -right-1 text-xs text-white"
+              >
+                {likeNotification.length}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="popover-content p-2 rounded-md shadow-md bg-white/10 backdrop-blur-md text-white border border-white/10 w-full max-w-[300px] md:max-w-[400px]">
+              <div>
+                {likeNotification.length === 0 ? (
+                  <p>No new notifications</p>
+                ) : (
+                  likeNotification.map((notification) => (
+                    <div
+                      key={notification.userId}
+                      className="flex items-center gap-2 p-2 border-b border-white/10"
+                    >
+                      <Avatar className="w-8 h-8">
+                        <AvatarImage
+                          className="rounded-full"
+                          src={notification.userDetails?.profilePicture || '/default-avatar.png'}
+                        />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
+                      <p className="text-sm">
+                        <span className="font-bold">{notification.userDetails?.username}</span> liked your post
+                      </p>
+                    </div>
+                  ))
+                )}
+              </div>
+              <Button
+                onClick={handleNotificationClick}
+                className="mt-2 w-full bg-white/20 hover:bg-white/30 text-white"
+              >
+                Mark as Seen
+              </Button>
+            </PopoverContent>
+          </Popover>
+        )}
+      </div>
+    ))}
+  </div>
+
+  {/* Bottom navigation for smaller screens */}
+  <div className="fixed bottom-0 left-0 z-10 w-full bg-white/10 backdrop-blur-md text-white md:hidden flex justify-around items-center py-3 border-t border-white/20">
+    {sidebarItems.slice(0, 6).map((item, index) => (
+      <div
+        key={index}
+        onClick={() => sidebarHandler(item.text)}
+        className="flex items-center justify-center cursor-pointer hover:bg-white/20 p-2 rounded-lg"
+      >
+        {item.icon}
+      </div>
+    ))}
+  </div>
+
+  <CreatePost open={open} setOpen={setOpen} />
+</div>
+
   );
 };
 
