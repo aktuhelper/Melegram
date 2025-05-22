@@ -8,10 +8,10 @@ const RightSidebar = () => {
   const { user } = useSelector((store) => store.auth);
 
   return (
-    <div className='w-64 my-20 pr-16 space-y-6'> {/* Main container with spacing between cards */}
+    <div className='w-72 my-20 pr-12 space-y-6'> {/* Increased width to w-72 (18rem) */}
       
       {/* User Card */}
-      <div className="bg-gray-800 p-4 rounded-lg shadow-md">
+      <div className="bg-[#1A1A1A] p-5 rounded-lg shadow-md">
         <Link to={`/profile/${user?._id}`} className="flex items-center gap-4">
           <Avatar className="w-12 h-12">
             <AvatarImage 
@@ -24,15 +24,15 @@ const RightSidebar = () => {
             </AvatarFallback>
           </Avatar>
 
-          <div className="flex flex-col">
-            <h1 className="font-semibold text-lg text-white">{user?.username}</h1>
-            <span className="text-sm text-gray-400">{user?.bio || 'Bio here...'}</span>
+          <div className="flex flex-col overflow-hidden">
+            <h1 className="font-semibold text-lg text-white truncate">{user?.username}</h1>
+            <span className="text-sm text-gray-400 truncate">{user?.bio || 'Bio here...'}</span>
           </div>
         </Link>
       </div>
 
       {/* Suggested Users Card */}
-      <div className="bg-gray-800 p-4 rounded-lg shadow-md">
+      <div className="bg-[#1A1A1A] p-5 rounded-lg shadow-md">
         <SuggestedUsers />
       </div>
     </div>
