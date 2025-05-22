@@ -161,7 +161,7 @@ return (
           dispatch(setSelectedPost(post))
           setOpen(true)
         }} className="cursor-pointer text-gray-400 hover:text-gray-200" />
-        <Send onClick={() => navigate('/chat')} className="cursor-pointer text-gray-400 hover:text-gray-200" />
+       
       </div>
       <Bookmark onClick={bookmarkHandler} className="cursor-pointer text-gray-400 hover:text-gray-200" />
     </div>
