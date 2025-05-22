@@ -8,7 +8,7 @@ const RightSidebar = () => {
   const { user } = useSelector((store) => store.auth);
 
   return (
-    <div className='w-72 my-20 pr-12 space-y-6'> {/* Increased width to w-72 (18rem) */}
+    <div className='hidden lg:block w-72 my-20 pr-12 space-y-6'> {/* Hidden on small/medium screens */}
       
       {/* User Card */}
       <div className="bg-[#1A1A1A] p-5 rounded-lg shadow-md">
