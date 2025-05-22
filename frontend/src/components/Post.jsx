@@ -98,7 +98,7 @@ const Post = ({ post }) => {
     };
     const navigate = useNavigate();
 return (
-  <div className="w-full max-w-[600px] mx-auto bg-[#1A1A1A] text-gray-300 p-6 rounded-xl shadow-md mb-6">
+  <div className="w-full max-w-[600px] mx-auto bg-[#141414] text-gray-300 p-6 rounded-xl shadow-md mb-6">
     {/* Header */}
     <div className="flex items-center justify-between mb-4">
       <div className="flex items-center gap-2">
@@ -189,7 +189,7 @@ return (
         placeholder="Add a comment..."
         value={text}
         onChange={changeEventHandler}
-        className="outline-none text-sm w-full bg-[#262626] text-gray-300 p-2 rounded-md placeholder-gray-500"
+        className="outline-none text-sm w-full bg-[#1A1A1A] text-gray-300 p-2 rounded-md placeholder-gray-500"
       />
       {text && (
         <span onClick={commentHandler} className="text-[#3BADF8] cursor-pointer hover:text-[#5BC2FF] ml-2">
