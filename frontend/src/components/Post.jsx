@@ -97,113 +97,109 @@ const Post = ({ post }) => {
         }
     };
     const navigate = useNavigate();
-    return (
-        <div className="post-container  w-full max-w-[500px] mx-auto bg-[#0F0F0F] text-gray-300 p-4 rounded-lg shadow-md">
-            {/* Header */}
-            <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-2">
-                    <Avatar className="w-12 h-12 rounded-full overflow-hidden">
-                        <AvatarImage src={post.author?.profilePicture} alt="post_image" />
-                        <AvatarFallback className="text-gray-300 bg-gray-600">CN</AvatarFallback>
-                    </Avatar>
-                    <div className='flex items-center gap-2'>
-                        <h1 className="text-gray-200 font-medium">{post.author?.username}</h1>
-                        {user?._id === post.author._id && <Badge variant="Secondary">Author</Badge>}
-                    </div>
-                </div>
-                <Dialog>
-                    <DialogTrigger asChild>
-                        <MoreHorizontal className="cursor-pointer text-gray-400 hover:text-gray-200" />
-                    </DialogTrigger>
-                    <DialogContent className="flex flex-col items-center text-sm text-gray-300 bg-[#1A1A1A] p-4 rounded-lg">
-                    {
-                        post?.author?._id!==user?._id &&  <Button variant="ghost" className="cursor-pointer w-fit text-[#ED4956] font-bold hover:bg-[#1F1F1F] hover:text-[#FF6666]">
-                            Unfollow
-                        </Button>
-                    }
-                       
-                    
-                        {user && user?._id === post?.author._id && (
-                            <Button
-                                onClick={deletePostHandler}
-                                variant="ghost"
-                                className="cursor-pointer w-fit text-gray-300 hover:bg-[#1F1F1F] hover:text-white"
-                            >
-                                Delete Post
-                            </Button>
-                        )}
-                    </DialogContent>
-                </Dialog>
-            </div>
-
-            {/* Post Image */}
-            <img
-                className="rounded-[12px] my-2 w-full object-cover"
-                src={post.image}
-                alt="post_img"
-            />
-
-            {/* Post Actions */}
-            <div className="flex items-center justify-between mb-2">
-                <div className="flex items-center gap-4">
-                    {liked ? (
-                        <FaHeart
-                            onClick={likeorDislikeHandler}
-                            size={'24'}
-                            className={`cursor-pointer text-red-600 ${likeAnimation ? 'like-animation' : ''}`}
-                        />
-                    ) : (
-                        <FaRegHeart
-                            onClick={likeorDislikeHandler}
-                            size="22px"
-                            className="cursor-pointer text-gray-400 hover:text-[#FF6666]"
-                        />
-                    )}
-                    <MessageCircle onClick={() => {
-                        dispatch(setSelectedPost(post))
-                        setOpen(true)
-                    }} className="cursor-pointer text-gray-400 hover:text-gray-200" />
-                    <Send  onClick={() => {
-    // Pass the selectedUser as state to the ChatPage
-    navigate('/chat'); 
-  }}  className="cursor-pointer text-gray-400 hover:text-gray-200" />
-                </div>
-                <Bookmark onClick={bookmarkHandler} className="cursor-pointer text-gray-400 hover:text-gray-200" />
-            </div>
-
-            {/* Post Info */}
-            <div className="text-sm text-gray-300 mb-2">
-                <span className="font-medium text-gray-200 mr-2">{postLike} likes</span>
-                <p className="line-clamp-2">{post.caption}</p>
-            </div>
-
-            {comment.length > 0 && (
-                <span onClick={() => {
-                    dispatch(setSelectedPost(post))
-                    setOpen(true)
-                }} className="text-gray-400 hover:text-gray-200 cursor-pointer text-sm">
-                    {comment.length} comments
-                </span>
-            )}
-
-            {/* Comment Section */}
-            <CommentDialog open={open} setOpen={setOpen} />
-            <div className="mt-4 flex items-center justify-between">
-                <input
-                    type="text"
-                    placeholder="Add a comment..."
-                    value={text}
-                    onChange={changeEventHandler}
-                    className="outline-none text-sm w-full bg-[#1A1A1A] text-gray-300 p-2 rounded-md placeholder-gray-500"
-                />
-                {text && (
-                    <span onClick={commentHandler} className="text-[#3BADF8] cursor-pointer hover:text-[#5BC2FF]">
-                        Post
-                    </span>
-                )}
-            </div>
+return (
+  <div className="w-full max-w-[600px] mx-auto bg-[#1A1A1A] text-gray-300 p-6 rounded-xl shadow-md mb-6">
+    {/* Header */}
+    <div className="flex items-center justify-between mb-4">
+      <div className="flex items-center gap-2">
+        <Avatar className="w-12 h-12 rounded-full overflow-hidden">
+          <AvatarImage src={post.author?.profilePicture} alt="post_image" />
+          <AvatarFallback className="text-gray-300 bg-gray-600">CN</AvatarFallback>
+        </Avatar>
+        <div className='flex items-center gap-2'>
+          <h1 className="text-gray-200 font-medium">{post.author?.username}</h1>
+          {user?._id === post.author._id && <Badge variant="Secondary">Author</Badge>}
         </div>
-    );
+      </div>
+      <Dialog>
+        <DialogTrigger asChild>
+          <MoreHorizontal className="cursor-pointer text-gray-400 hover:text-gray-200" />
+        </DialogTrigger>
+        <DialogContent className="flex flex-col items-center text-sm text-gray-300 bg-[#1A1A1A] p-4 rounded-lg">
+          {post?.author?._id !== user?._id && (
+            <Button variant="ghost" className="cursor-pointer w-fit text-[#ED4956] font-bold hover:bg-[#1F1F1F] hover:text-[#FF6666]">
+              Unfollow
+            </Button>
+          )}
+          {user && user?._id === post?.author._id && (
+            <Button
+              onClick={deletePostHandler}
+              variant="ghost"
+              className="cursor-pointer w-fit text-gray-300 hover:bg-[#1F1F1F] hover:text-white"
+            >
+              Delete Post
+            </Button>
+          )}
+        </DialogContent>
+      </Dialog>
+    </div>
+
+    {/* Post Image */}
+    <img
+      className="rounded-[12px] my-2 w-full object-cover"
+      src={post.image}
+      alt="post_img"
+    />
+
+    {/* Post Actions */}
+    <div className="flex items-center justify-between mb-2">
+      <div className="flex items-center gap-4">
+        {liked ? (
+          <FaHeart
+            onClick={likeorDislikeHandler}
+            size={'24'}
+            className={`cursor-pointer text-red-600 ${likeAnimation ? 'like-animation' : ''}`}
+          />
+        ) : (
+          <FaRegHeart
+            onClick={likeorDislikeHandler}
+            size="22px"
+            className="cursor-pointer text-gray-400 hover:text-[#FF6666]"
+          />
+        )}
+        <MessageCircle onClick={() => {
+          dispatch(setSelectedPost(post))
+          setOpen(true)
+        }} className="cursor-pointer text-gray-400 hover:text-gray-200" />
+        <Send onClick={() => navigate('/chat')} className="cursor-pointer text-gray-400 hover:text-gray-200" />
+      </div>
+      <Bookmark onClick={bookmarkHandler} className="cursor-pointer text-gray-400 hover:text-gray-200" />
+    </div>
+
+    {/* Post Info */}
+    <div className="text-sm text-gray-300 mb-2">
+      <span className="font-medium text-gray-200 mr-2">{postLike} likes</span>
+      <p className="line-clamp-2">{post.caption}</p>
+    </div>
+
+    {comment.length > 0 && (
+      <span onClick={() => {
+        dispatch(setSelectedPost(post))
+        setOpen(true)
+      }} className="text-gray-400 hover:text-gray-200 cursor-pointer text-sm">
+        {comment.length} comments
+      </span>
+    )}
+
+    {/* Comment Section */}
+    <CommentDialog open={open} setOpen={setOpen} />
+    <div className="mt-4 flex items-center justify-between">
+      <input
+        type="text"
+        placeholder="Add a comment..."
+        value={text}
+        onChange={changeEventHandler}
+        className="outline-none text-sm w-full bg-[#262626] text-gray-300 p-2 rounded-md placeholder-gray-500"
+      />
+      {text && (
+        <span onClick={commentHandler} className="text-[#3BADF8] cursor-pointer hover:text-[#5BC2FF] ml-2">
+          Post
+        </span>
+      )}
+    </div>
+  </div>
+);
+
 };
 
 export default Post;
