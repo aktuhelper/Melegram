@@ -32,7 +32,8 @@ const RightSidebar = () => {
       </div>
 
       {/* Suggested Users Card */}
-      <div className="bg-[#1A1A1A] p-5 rounded-lg shadow-md">
+   <div className="hidden lg:block bg-[#1A1A1A] p-5 rounded-lg shadow-md">
+
         <SuggestedUsers />
       </div>
     </div>
