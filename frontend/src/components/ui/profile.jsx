@@ -3,30 +3,28 @@ import { Avatar, AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import { Heart, MessageCircle } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate, useParams } from 'react-router-dom'; // Use navigate for routing
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Button } from './button';
-import axios from 'axios'; // Ensure axios is imported
+import axios from 'axios';
 import { toast } from 'sonner';
 
 const Profile = () => {
   const params = useParams();
   const userId = params.id;
-  useGetUserProfile(userId); // Hook to fetch user profile data
+  useGetUserProfile(userId);
 
-  const { userProfile, user,selectedUser } = useSelector((store) => store.auth);
+  const { userProfile, user } = useSelector((store) => store.auth);
   const [activeTab, setActiveTab] = useState('posts');
-  const [showMessage, setShowMessage] = useState(true); // State to show message box
-  const [isFollowing, setIsFollowing] = useState(false); // State to track follow status
+  const [showMessage, setShowMessage] = useState(true);
+  const [isFollowing, setIsFollowing] = useState(false);
   const isLoggedinUserProfile = user?._id === userProfile?._id;
 
-  // Check if the logged-in user is following the userProfile
   useEffect(() => {
     if (userProfile && user) {
       setIsFollowing(userProfile.followers.includes(user._id));
     }
   }, [userProfile, user]);
 
-  // Function to follow or unfollow a user
   const followOrUnfollow = async () => {
     try {
       const res = await axios.post(
@@ -36,8 +34,7 @@ const Profile = () => {
       );
 
       if (res.data.success) {
-        // Update follow status after successful API call
-        setIsFollowing((prev) => !prev); // Toggle follow status
+        setIsFollowing((prev) => !prev);
         toast.success(res.data.message);
       }
     } catch (error) {
@@ -46,7 +43,6 @@ const Profile = () => {
     }
   };
 
-  // Hide message after 4 seconds
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowMessage(false);
@@ -59,8 +55,6 @@ const Profile = () => {
   };
 
   const displayedPost = activeTab === 'posts' ? userProfile?.posts : userProfile?.bookmark;
-
-  // Use navigate for redirection
   const navigate = useNavigate();
 
   return (
@@ -95,25 +89,13 @@ const Profile = () => {
                     </Button>
                   </Link>
                 ) : isFollowing ? (
-                  <>
-                    <Button
-                      onClick={followOrUnfollow}
-                      variant="secondary"
-                      className="bg-black border border-gray-600 text-white hover:bg-[#333] py-2 px-6 rounded-full"
-                    >
-                      Unfollow
-                    </Button>
-                    <Button
-  onClick={() => {
-    // Pass the selectedUser as state to the ChatPage
-    navigate('/chat'); 
-  }} 
-  variant="secondary" 
-  className="bg-[#0095F6] hover:bg-[#0073E6] text-white py-2 px-6 rounded-full"
->
-  Message
-</Button>
-                  </>
+                  <Button
+                    onClick={followOrUnfollow}
+                    variant="secondary"
+                    className="bg-black border border-gray-600 text-white hover:bg-[#333] py-2 px-6 rounded-full"
+                  >
+                    Unfollow
+                  </Button>
                 ) : (
                   <Button
                     onClick={followOrUnfollow}
@@ -138,7 +120,7 @@ const Profile = () => {
           </section>
         </div>
 
-        {/* Message Box - Displayed for 3 seconds and only on mobile */}
+        {/* Message Box - Displayed for 4 seconds and only on mobile */}
         {showMessage && (
           <div className="fixed top-0 left-0 w-full p-4 bg-black bg-opacity-70 text-white text-center z-50 sm:hidden">
             <span>Open in PC For Better View!</span>
@@ -164,7 +146,7 @@ const Profile = () => {
             <span className="py-3 cursor-pointer">TAGS</span>
           </div>
 
-          {/* Post Grid - Full width on mobile */}
+          {/* Post Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-6 mt-6 w-full">
             {displayedPost?.map((post) => (
               <div key={post?._id} className="relative group cursor-pointer w-full">
